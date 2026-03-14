@@ -1,4 +1,6 @@
 def substrings(str, dict)
+    
+=begin
     words = str.downcase.split(/[\s,\.?!']+/) 
     result = Hash.new(0)
 
@@ -8,22 +10,14 @@ def substrings(str, dict)
         end
     end
 
-    #words.each do |word|
-    #  dict.each do |dict_word|
-    #    result[dict_word] += 1 if word.include?(dict_word)
-    #  end
-    #end
-
     result
-    
-    #str.downcase.split(/[ ,\.?!']/).reduce(Hash.new(0)) do |result, word|
-    #    result[word] += 1 if dict.include?(word)
-    #
-    #   dict.each do |dict_word| 
-    #       result[dict_word] += 1 if word.include?(dict_word) && dict_word != word
-    #    end
+=end
 
-    #    result
-    #end
-    
+    text = str.downcase
+    result = Hash.new(0)
+
+    dict.each_with_object(result) do |word, result|
+        count = text.scan(word).length
+        result[word] = count if count > 0
+    end
 end
